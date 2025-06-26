@@ -3,6 +3,10 @@ from sqlalchemy.orm import Session
 from app import models, schemas
 from app.auth import get_db, oauth2_scheme, SECRET_KEY, ALGORITHM
 from jose import jwt
+from typing import List
+from app.schemas import FeedbackResponse
+from app.models import User
+from app.auth import get_current_manager
 
 router = APIRouter(prefix="/feedback", tags=["feedback"])
 
@@ -42,5 +46,14 @@ def feedback_history(employee_id: int, db: Session = Depends(get_db), current_us
     return db.query(models.Feedback).filter(models.Feedback.employee_id == employee_id).all()
 
 
-@router.get("/team/{team}")
-def team_feedback(team: str, db: Session = Depends(get_db), curr
+@router.get("/team-feedback", response_model=List[FeedbackResponse])
+def team_feedback(db: Session = Depends(get_db), current_user: User = Depends(get_current_manager)):
+    if current_user.role != "manager":
+        raise HTTPException(403, detail="Only managers can access this.")
+    
+    team_members = db.query(models.User).filter(models.User.team == current_user.team).all()
+    feedback_list = []
+    for member in team_members:
+        feedbacks = db.query(models.Feedback).filter(models.Feedback.employee_id == member.id).all()
+        feedback_list.extend(feedbacks)
+    return feedback_list
