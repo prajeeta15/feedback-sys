@@ -2,7 +2,7 @@
 
 A full-stack web application that enables **managers and employees** to share structured, role-based feedback in a simple, secure, and user-friendly way.
 
-> Built with **React + FastAPI** | Deployed via **Vercel** (Frontend) and **Render** (Backend)
+> Built with **React + FastAPI** | Deployed via  **Render** (Backend)
 
 ---
 
