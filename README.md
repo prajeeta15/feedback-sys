@@ -45,24 +45,23 @@ A full-stack web application that enables **managers and employees** to share st
 
 ---
 ## ⚙️ Setup Instructions
+🌐 Frontend (HTML)
+Just open frontend/index.html in any browser.
+For deployment, drag the folder into https://vercel.com
+
+✅ Make sure to update API URLs inside index.html to your deployed backend.
 
 ### 🐍 Backend (FastAPI)
 
-1. Clone the repo
+ 1. Clone the repo
 ```bash
 git clone https://github.com/prajeeta15/feedback-sys.git
 cd feedback-system/backend  
 
 2. Install dependencies
-Copy
-Edit
 pip install -r requirements.txt
 
-Run locally
-
-bash
-Copy
-Edit
+3. Run locally
 uvicorn app.main:app --reload
 
 build docker image
