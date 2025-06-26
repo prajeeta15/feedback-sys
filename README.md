@@ -1,10 +1,11 @@
 # 📝 Feedback Sharing System
 
-🔗**deployed** at [https://feedback-sys-w29g.onrender.com]
+🔗**deployed** Backend (Render) [https://feedback-sys-w29g.onrender.com]
+Frontend (Vercel) [https://feedback-sys-nu.vercel.app/]
 
 A full-stack web application that enables **managers and employees** to share structured, role-based feedback in a simple, secure, and user-friendly way.
 
-> Built with **React + FastAPI** | Deployed via  **Render** (Backend)
+> Built with **React + FastAPI** | Deployed via  **Render** (Backend) **Vercel** (Frontend)
 
 ---
 
