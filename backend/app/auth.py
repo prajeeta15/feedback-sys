@@ -6,6 +6,8 @@ from app.database import SessionLocal
 from passlib.context import CryptContext
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
+from app.models import User
+from app.auth import get_current_user
 
 SECRET_KEY = "your-secret-key"
 ALGORITHM = "HS256"
@@ -69,3 +71,8 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         raise HTTPException(status_code=401, detail="Invalid credentials")
     access_token = create_access_token(data={"sub": user.username})
     return {"access_token": access_token, "token_type": "bearer"}
+    
+def get_current_manager(current_user: User = Depends(get_current_user)):
+    if current_user.role != "manager":
+        raise HTTPException(status_code=403, detail="Only managers can access this route")
+    return current_user
