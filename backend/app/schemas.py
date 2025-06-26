@@ -47,5 +47,14 @@ class FeedbackOut(FeedbackBase):
     manager_id: int
     acknowledged: str
 
+class FeedbackResponse(BaseModel):
+    id: int
+    employee_id: int
+    manager_id: int
+    strengths: str
+    improvements: str
+    sentiment: str
+    comments: Optional[str]
+
     class Config:
-        orm_mode = True
+        from_attributes = True
